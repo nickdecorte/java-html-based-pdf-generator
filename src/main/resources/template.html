@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html th:lang="${#locale.language}" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>i18n Example!</title>
+    <meta charset="utf-8"/>
+
+    <style>
+
+        h1 {
+            position: absolute;
+            right: 0;
+            color:red;
+        }
+
+        .float-left {
+            color:blue;
+            float:right;
+        }
+
+    </style>
+</head>
+<body>
+
+<div th:replace="header"></div>
+<h1>Hi! My name is [[${name}]]!</h1>
+
+</body>
+</html>
