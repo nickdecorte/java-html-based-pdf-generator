@@ -25,7 +25,7 @@ public class GenerateController {
     public ResponseEntity<byte[]> generate(Model model) throws IOException, DocumentException {
         Document document = new Document();
         document.setFileName("test.pdf");
-        document.setTemplate("template");
+        document.setTemplate("invoice/master");
         document.setLanguage("nl");
         document.setVariable("name", "Nick Decorte");
         document.addTemplateParameter("be");

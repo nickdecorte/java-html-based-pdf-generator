@@ -55,7 +55,7 @@ public class DocumentTemplateResolver extends AbstractConfigurableTemplateResolv
     }
 
     private boolean hasTemplate(String templateResource) {
-        return getClass().getResource("/" + templateResource) != null;
+        return getClass().getResource(templateResource) != null;
     }
 
 }
