@@ -18,6 +18,14 @@
 <body>
     <div th:replace="/invoice/components/headers/header"></div>
         <p th:text="#{invoice.content}" class="content"></p>
+
+        [[${data.company}]] - [[${data.date}]]
+
+        <div th:each="product : ${data.products}">
+            <span th:text="${product.name}"></span>
+            <span th:text="${product.price}"></span>
+        </div>
+
     <div th:replace="/invoice/components/footers/footer"></div>
 </body>
 </html>

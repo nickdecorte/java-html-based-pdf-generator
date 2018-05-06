@@ -3,6 +3,7 @@ package com.example.documents.http;
 import com.example.documents.domain.Document;
 import com.example.documents.generator.DocumentGenerator;
 import com.itextpdf.text.DocumentException;
+import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.util.HashMap;
 
 @RestController
 public class GenerateController {
@@ -23,11 +25,13 @@ public class GenerateController {
 
     @RequestMapping("/")
     public ResponseEntity<byte[]> generate(Model model) throws IOException, DocumentException {
+        String request = "{ \"data\":{ \"company\": \"acme\", \"date\": \"04/05/2018\", \"products\": [{ \"name\": \"Coca Cola\", \"price\": \"1.80\" },{ \"name\": \"Sprite\", \"price\": \"1.90\" }] } }";
+
         Document document = new Document();
         document.setFileName("test.pdf");
         document.setTemplate("invoice/master");
         document.setLanguage("nl");
-        document.setVariable("name", "Nick Decorte");
+        document.setData(new ObjectMapper().readValue(request, HashMap.class));
         document.addTemplateParameter("be");
         document.addTemplateParameter("acme");
 

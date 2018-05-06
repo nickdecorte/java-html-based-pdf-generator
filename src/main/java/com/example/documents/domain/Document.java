@@ -2,16 +2,13 @@ package com.example.documents.domain;
 
 import org.thymeleaf.context.Context;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
+import java.util.*;
 
 public class Document {
 
     private String fileName;
     private String template;
     private ArrayList<String> templateParameters;
-    //private TemplateParameters templateParameters;
     private Context context;
 
     public Document() {
@@ -51,7 +48,12 @@ public class Document {
         this.context.setLocale(new Locale(language));
     }
 
-    public void setVariable(String name, Object value) {
-        this.context.setVariable(name, value);
+    public void setData(HashMap<String, Object> data) {
+        Iterator it = data.entrySet().iterator();
+        while (it.hasNext()) {
+            Map.Entry pair = (Map.Entry) it.next();
+
+            this.context.setVariable(pair.getKey().toString(), pair.getValue());
+        }
     }
 }
