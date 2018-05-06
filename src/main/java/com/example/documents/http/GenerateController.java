@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.sql.Timestamp;
+import java.text.NumberFormat;
 import java.util.HashMap;
 
 @RestController
@@ -36,9 +37,27 @@ public class GenerateController {
         document.addTemplateParameter("be");
         document.addTemplateParameter("acme");
 
+
+        Runtime runtime = Runtime.getRuntime();
         System.out.print(new Timestamp(System.currentTimeMillis()));
         ByteArrayOutputStream outputStream = documentGenerator.create(document);
         System.out.print(new Timestamp(System.currentTimeMillis()));
+
+        NumberFormat format = NumberFormat.getInstance();
+
+        StringBuilder sb = new StringBuilder();
+
+        long maxMemory = runtime.maxMemory();
+        long allocatedMemory = runtime.totalMemory();
+        long freeMemory = runtime.freeMemory();
+
+        sb.append("free memory: " + format.format(freeMemory / 1024) + "<br/>");
+        sb.append("allocated memory: " + format.format(allocatedMemory / 1024) + "<br/>");
+        sb.append("max memory: " + format.format(maxMemory / 1024) + "<br/>");
+        sb.append("total free memory: " + format.format((freeMemory + (maxMemory - allocatedMemory)) / 1024) + "<br/>");
+
+
+        System.out.print(sb);
 
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.parseMediaType("application/pdf"));
