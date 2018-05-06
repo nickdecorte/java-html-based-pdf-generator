@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.sql.Timestamp;
 import java.util.HashMap;
 
 @RestController
@@ -35,7 +36,9 @@ public class GenerateController {
         document.addTemplateParameter("be");
         document.addTemplateParameter("acme");
 
+        System.out.print(new Timestamp(System.currentTimeMillis()));
         ByteArrayOutputStream outputStream = documentGenerator.create(document);
+        System.out.print(new Timestamp(System.currentTimeMillis()));
 
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.parseMediaType("application/pdf"));

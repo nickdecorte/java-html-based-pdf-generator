@@ -2,7 +2,7 @@
 - making it variable as a post request
 X make image example
 X try out directory structure for template
-- repeat text on each page
+X repeat text on each page
 
 # FUTURE
 - Stylesheet per company
