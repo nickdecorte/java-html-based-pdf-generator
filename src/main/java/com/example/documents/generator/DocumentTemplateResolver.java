@@ -10,19 +10,20 @@ import java.util.*;
 public class DocumentTemplateResolver extends AbstractConfigurableTemplateResolver {
 
     private final ClassLoader classLoader;
-    private ArrayList<String> parameters;
+    private List<String> specifiers;
 
     public DocumentTemplateResolver() {
-        this((ClassLoader)null);
+        this((ClassLoader) null);
     }
 
-    public void setParameters(ArrayList<String> parameters) {
-        this.parameters = parameters;
+    public void setParameters(List<String> specifiers) {
+        this.specifiers = specifiers;
     }
 
     public DocumentTemplateResolver(ClassLoader classLoader) {
         this.classLoader = classLoader;
     }
+
     @Override
     protected ITemplateResource computeTemplateResource(IEngineConfiguration configuration, String ownerTemplate, String template, String resourceName, String characterEncoding, Map<String, Object> templateResolutionAttributes) {
         List<String> combinations = getTemplateCombinations();
@@ -40,13 +41,13 @@ public class DocumentTemplateResolver extends AbstractConfigurableTemplateResolv
 
     private List<String> getTemplateCombinations() {
         List<String> templates = new ArrayList<>();
-        for (String parameter : parameters) {
+        for (String specifier : specifiers) {
             String prefix = "";
             if (! templates.isEmpty()) {
                 prefix = templates.get(templates.size() - 1);
             }
 
-            templates.add(prefix + "." + parameter);
+            templates.add(prefix + "." + specifier);
         }
 
         Collections.reverse(templates);

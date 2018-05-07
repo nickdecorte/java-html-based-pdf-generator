@@ -54,9 +54,9 @@
             <td class="report-content-cell">
                 <p th:text="#{invoice.content}" class="content"></p>
 
-                [[${data.company}]] - [[${data.date}]]
+                [[${company}]] - [[${date}]]
 
-                <div th:each="product : ${data.products}">
+                <div th:each="product : ${products}">
                     <span th:text="${product.name}"></span>
                     <span th:text="${product.price}"></span>
                 </div>

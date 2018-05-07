@@ -5,11 +5,12 @@ import org.codehaus.jackson.map.ObjectMapper;
 import org.junit.Test;
 
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.HashMap;
 
-public class TemplateRendererTest {
+public class DocumentTemplateRendererTest {
 
-    private TemplateRenderer renderer = new TemplateRenderer();
+    private DocumentTemplateRenderer renderer = new DocumentTemplateRenderer();
 
     @Test
     public void render() throws IOException {
@@ -19,12 +20,11 @@ public class TemplateRendererTest {
         HashMap<String, Object> result = new ObjectMapper().readValue(test, HashMap.class);
 
         Document document = new Document();
-        document.setFileName("test.pdf");
-        document.setTemplate("invoice/master");
+        document.setFile("test.pdf");
+        document.setType("invoice");
         document.setLanguage("nl");
         document.setData(result);
-        document.addTemplateParameter("be");
-        document.addTemplateParameter("acme");
+        document.setSpecifiers(Arrays.asList("be", "acme"));
 
         System.out.print(renderer.render(document));
     }

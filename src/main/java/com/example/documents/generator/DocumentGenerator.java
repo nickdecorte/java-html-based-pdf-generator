@@ -13,12 +13,11 @@ import java.io.IOException;
 public class DocumentGenerator {
 
     @Autowired
-    private TemplateRenderer templateRenderer;
+    private DocumentTemplateRenderer documentTemplateRenderer;
 
     public ByteArrayOutputStream create(Document document) throws IOException, DocumentException {
         ITextRenderer renderer = new ITextRenderer();
-
-        renderer.setDocumentFromString(templateRenderer.render(document));
+        renderer.setDocumentFromString(documentTemplateRenderer.render(document));
         renderer.layout();
 
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();

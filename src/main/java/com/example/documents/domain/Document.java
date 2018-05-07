@@ -6,39 +6,39 @@ import java.util.*;
 
 public class Document {
 
-    private String fileName;
-    private String template;
-    private ArrayList<String> templateParameters;
+    private String file;
+    private String type;
+    private List<String> specifiers;
     private Context context;
 
     public Document() {
         context = new Context();
-        templateParameters = new ArrayList<>();
     }
 
-    public String getFileName() {
-        return fileName;
+    public String getFile() {
+        return file;
     }
 
-    public void setFileName(String fileName) {
-        this.fileName = fileName;
+    public void setFile(String file) {
+        this.file = file;
     }
 
-    public String getTemplate() {
-        return template;
+    public String getType() {
+        return type;
     }
 
-    public void setTemplate(String template) {
-        this.template = template;
+    public void setType(String type) {
+        this.type = type + "/master";
     }
 
-    public ArrayList<String> getTemplateParameters() {
-        return templateParameters;
+    public List<String> getSpecifiers() {
+        return specifiers;
     }
 
-    public void addTemplateParameter(String parameter) {
-        this.templateParameters.add(parameter);
+    public void setSpecifiers(List<String> specifiers) {
+        this.specifiers = specifiers;
     }
+
 
     public Context getContext() {
         return context;
