@@ -1,0 +1,28 @@
+<header xmlns:th="http://www.w3.org/1999/xhtml">
+    <div class="header-document">
+        <div class="header-document-logo">
+            <img src="http://localhost:8080/images/ravago.png"/>
+        </div>
+
+        <div class="header-document-info">
+            <h1 th:text="#{header.title.document}"></h1>
+
+            <p>
+                <span th:text="#{header.label.date} + ' ' + ${#dates.format(#dates.createNow(), 'dd/mm/yyyy')}"></span>
+                <br/>
+                <span th:text="#{header.label.page}"></span> <span id="pagenumber"></span>/<span id="pagecount"></span>
+            </p>
+        </div>
+    </div>
+
+    <div class="header-address">
+        <div class="header-address-info">
+            <ul class="nostyle">
+                <li>[[${companiesReportDBBean.legalAddress.name}]]</li>
+                <li>[[${companiesReportDBBean.legalAddress.addressLine1}]]</li>
+                <li>[[${companiesReportDBBean.legalAddress.postCode}]] [[${companiesReportDBBean.legalAddress.city}]]</li>
+                <li>[[${companiesReportDBBean.legalAddress.countryName}]]</li>
+            </ul>
+        </div>
+    </div>
+</header>

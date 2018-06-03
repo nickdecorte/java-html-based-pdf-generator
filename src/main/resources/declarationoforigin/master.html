@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html th:lang="${#locale.language}" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta charset="utf-8"/>
+
+        <link rel="stylesheet" type="text/css" href="http://localhost:8080/style/declarationoforigin.css"/>
+    </head>
+    <body>
+        <header th:replace="/declarationoforigin/components/headers/header"></header>
+
+        <section class="content">
+            <table class="all-bordered" th:each="line : ${declarationOfOriginReportLines}">
+                <tr>
+                    <td colspan="2">
+                        <table>
+                        <tr>
+                            <td><strong th:text="#{section.label.reference}"></strong></td>
+                            <td><strong>[[${line.transportOrderLineNo}]]</strong></td>
+                        </tr>
+                        <tr>
+                            <td th:text="#{section.label.product_id}"></td>
+                            <td>[[${line.productId}]]</td>
+                        </tr>
+                        <tr>
+                            <td th:text="#{section.label.product_description}"></td>
+                            <td>[[${line.productDescription}]]</td>
+                        </tr>
+                        <tr>
+                            <td th:text="#{section.label.product_code}"></td>
+                            <td>[[${line.hsCode}]]</td>
+                        </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <th th:text="#{section.label.description}"></th>
+                    <th th:text="#{section.label.quantity}" width="150"></th>
+                </tr>
+                <tr th:each="batch : ${line.declarationOfOriginReportBatches}">
+                    <td>
+                        <ul class="nostyle">
+                            <li th:text="#{section.label.producer_lot_nr} + ' ' + ${batch.producerLotNo}"></li>
+                            <li th:text="#{section.label.country_of_origin} + ' ' + ${batch.countryOfOrigin}"></li>
+                        </ul>
+                    </td>
+                    <td>
+                        <ul class="nostyle">
+                            <li>[[${batch.quantity}]]</li>
+                            <li>[[${batch.unitOfMeasure}]]</li>
+                        </ul>
+                    </td>
+                </tr>
+            </table>
+
+            <dl>
+                <dt><strong th:text="#{section.label.customer_legal_address}"></strong></dt>
+                <dd>
+                    <ul class="nostyle">
+                        <li>[[${companiesReportDBBean.legalAddress.name}]]</li>
+                        <li>[[${companiesReportDBBean.legalAddress.addressLine1}]]</li>
+                        <li>[[${companiesReportDBBean.legalAddress.postCode}]] [[${companiesReportDBBean.legalAddress.city}]]</li>
+                        <li>[[${companiesReportDBBean.legalAddress.countryName}]]</li>
+                    </ul>
+                </dd>
+            </dl>
+        </section>
+
+        <footer th:replace="/declarationoforigin/components/footers/footer"></footer>
+    </body>
+</html>

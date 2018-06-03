@@ -1,0 +1,94 @@
+body {
+    font-size: 12px;
+}
+
+.header-document {
+    overflow: hidden;
+}
+
+.header-document-logo {
+    width: 150px;
+    float: left;
+}
+
+.header-document-logo img {
+    height: 80px;
+}
+
+.header-document-info {
+    width: 300px;
+    float: right;
+    border: 1px solid #000;
+}
+
+.header-document-info h1 {
+    font-size: 18px;
+    text-align: center;
+    padding: 10px;
+    border-bottom: 2px solid #000;
+    margin: 0;
+}
+
+.header-document-info p {
+    text-align: center;
+}
+
+.header-address {
+    overflow:hidden;
+}
+
+.header-address-info {
+    margin-top:30px;
+    width: 300px;
+    float: right;
+}
+
+ul.nostyle {
+    padding: 0px;
+    margin: 0;
+    list-style-type: none;
+}
+
+.bordered {
+    border-collapse: collapse;
+    border: 1px solid #000;
+    border-bottom: none;
+}
+
+table {
+    width: 100%;
+}
+
+.content {
+    display: block;
+    margin-top: 100px;
+}
+
+dl {
+    margin-top: 35px;
+}
+
+.footer {
+    margin-top: 50px;
+}
+
+.all-bordered {
+    border-collapse: collapse;
+}
+
+.all-bordered > tr > th, .all-bordered > tr > td {
+    border: 1px solid #000;
+    padding: 5px 10px;
+}
+
+.numbering {
+    content: counter(page) "/" counter(pages);
+}
+
+ #pagenumber:before {
+        content: counter(page);
+    }
+
+    #pagecount:before {
+        content: counter(pages);
+    }
